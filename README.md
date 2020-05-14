@@ -361,6 +361,19 @@ Go to `android/app/src/main/res/drawable/background_splash.xml` and change to th
   </item>
 </layer-list>
 ```
+Then go to `android/app/src/main/java/MainActivity.java` and change like follow:
+```java
+@SuppressLint("ResourceType")
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+
+  MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, R.id.background_image,getResources().getString(R.color.backgroundColor));
+}
+
+// Note the "R.id.background_image" above, that must match the id in the drawable xml
+```
+
 Now reload your app to see the change
 ### Icon tint color
 To change the tint color of the animated icon or background image, use the following:
