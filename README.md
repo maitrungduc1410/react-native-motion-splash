@@ -255,8 +255,13 @@ MotionSplash.hide()
 And the splashview should dismiss:
 
 <div align="center">
-  <img src="./demos/heartbeat.gif" />
+  <img src="./demos/heartBeat.gif" />
 </div>
+
+To set the number of minimum beats per round trip, use:
+```js
+MotionSplash.setMinimumBeats(3);
+```
 
 ### Rotate Out
 Similar to the Twitter one but rotating while zooming out.
@@ -309,6 +314,7 @@ MotionSplash.animate('WobbleAndZoomOut')
 </div>
 
 ## Advanced
+### Using background image
 If you want to add a background image after the animated icon instead of using background color. Do the following:
 
 Go to `ios/YourProject/AppDelegate.m` and change to:
@@ -354,6 +360,13 @@ Go to `android/app/src/main/res/drawable/background_splash.xml` and change to th
 </layer-list>
 ```
 Now reload your app to see the change
+### Icon tint color
+To change the tint color of the animated icon or background image, use the following:
+```js
+MotionSplash.useCustomColor(true, 'red');
+// true will be applied to the animated icon
+// false applied for the background image (if set)
+```
 
 # Demo
 A fully working demo is located at [example folder](./example/)
