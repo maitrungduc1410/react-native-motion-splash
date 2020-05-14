@@ -39,6 +39,7 @@
 2. [Usage](#usage)
     1. [Basic usage](#basic)
     2. [Animation types](#Animation-types)
+    3. [Advanced](#Advanced)
 3. [Demo](#demo)
 4. [Thanks](#thanks)
 
