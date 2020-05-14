@@ -5,31 +5,65 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Size;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-
 import androidx.annotation.Nullable;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 
+@SuppressLint("ViewConstructor")
 public class MotionSplashView extends View {
+    public FrameLayout layout;
     public Drawable iconImage;
+    public Drawable backgroundImage;
     public ImageView imageView;
     public MotionSplashAnimationType animationType;
     public double duration = 1500;
     public int minimumBeats = 1;
     public boolean heartAttack = false;
 
-    public MotionSplashView(Context context, Drawable iconImage) {
+    public MotionSplashView(Context context, Drawable iconImage, Size iconInitialSize, @Nullable Drawable backgroundImage, @Nullable String backgroundColor) {
         super(context);
         this.imageView = new ImageView(context);
         this.iconImage = iconImage;
         this.imageView.setImageDrawable(iconImage);
-        this.imageView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        this.backgroundImage = backgroundImage;
+
+        Resources r = getResources();
+        float widthPx = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                iconInitialSize.getWidth(),
+                r.getDisplayMetrics());
+        float heightPx = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                iconInitialSize.getHeight(),
+                r.getDisplayMetrics());
+
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams((int) widthPx, (int) heightPx);
+        layoutParams.gravity = Gravity.CENTER;
+        this.imageView.setLayoutParams(layoutParams);
         this.animationType = MotionSplashAnimationType.twitter;
+
+        layout = new FrameLayout(context);
+        if (backgroundImage == null) {
+            layout.setBackgroundColor(Color.parseColor(backgroundColor));
+        } else {
+            ImageView backgroundImageIV = new ImageView(context);
+            backgroundImageIV.setImageDrawable(backgroundImage);
+            backgroundImageIV.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+            layout.addView(backgroundImageIV);
+        }
+
+        layout.addView(imageView);
     }
 
     public void startAnimation (@Nullable final MotionSplashViewListener mListener) {

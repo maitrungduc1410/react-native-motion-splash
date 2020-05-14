@@ -2,7 +2,7 @@ import { NativeModules, processColor } from 'react-native';
 const { MotionSplash } = NativeModules;
 
 const animate = (animationType) => {
-  if (typeof animationType !== 'string') {
+  if (animationType && typeof animationType !== 'string') {
     throw new TypeError('Property "animationType" must be string')
   }
   MotionSplash.animate(animationType || '')

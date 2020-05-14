@@ -100,13 +100,12 @@ Next, open `AppDelegate.m`, and to function `didFinishLaunchingWithOptions` the 
 
 UIImage *img = [UIImage imageNamed:@"Logo"]; // the name of your image
 CGSize iconInitialSize = CGSizeMake(70, 70); // (width, height) of your icon
-UIColor *backgroundColor = [UIColor colorWithRed:0.00 green:0.48 blue:1.00 alpha:1.0]; // background color
+NSString *backgroundColor = @"#0573ff";
 [MotionSplash initWithIconImage:img iconInitialSize:&iconInitialSize backgroundColor:backgroundColor  inRootView:rootView];
 ```
 Note:
 - `iconInitialSize`: must match the size you setup in second step to perform best animation visualization
-- `backgroundColor`: should also match the color of the root view you setup in second step (you can use `Digital Color Meter` built-in on Mac to check color Hexa code)
-- You can quickly convert Hexa color to UIColor [at this site](https://www.uicolor.io/)
+- `backgroundColor`: should also match the color of the root view you setup in second step in `LaunchScreen.xib` (you can use `Digital Color Meter` built-in on Mac to check Hexa color code)
 
 ## Android
 Open `android/build.gradle` and set `minSdkVersion` to `21`.
@@ -196,7 +195,9 @@ import com.reactlibrary.MotionSplash;
 protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
 
-  MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, 0,getResources().getString(R.color.backgroundColor));
+  Size iconInitialSize = new Size(70, 70);
+  String backgroundColor = getResources().getString(R.color.backgroundColor);
+  MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, iconInitialSize, backgroundColor);
 }
 ```
 
@@ -339,7 +340,7 @@ Go to `android/app/src/main/res/drawable/background_splash.xml` and change to th
 
   <!-- Your background image here -->
   <item
-    android:id="@+id/background_image"
+    android:id="@+id/logo_background"
     android:gravity="center"
   >
     <bitmap
@@ -368,10 +369,11 @@ Then go to `android/app/src/main/java/MainActivity.java` and change like follow:
 protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
 
-  MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, R.id.background_image,getResources().getString(R.color.backgroundColor));
+  Size iconInitialSize = new Size(70, 70);
+  MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, iconInitialSize, R.id.logo_background);
 }
 
-// Note the "R.id.background_image" above, that must match the id in the drawable xml
+// Note the "R.id.logo_background" above, that must match the id in the drawable xml
 ```
 
 Now reload your app to see the change

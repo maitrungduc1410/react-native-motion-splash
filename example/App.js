@@ -4,7 +4,7 @@ import MotionSplash from 'react-native-motion-splash';
 
 export default class App extends Component {
   componentDidMount() {
-    // MotionSplash.useCustomColor(true, 'red');
+    MotionSplash.useCustomColor(false, 'red');
     // MotionSplash.setMinimumBeats(3);
     MotionSplash.animate();
     // setTimeout(() => {

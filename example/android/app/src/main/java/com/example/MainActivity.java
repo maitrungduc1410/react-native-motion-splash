@@ -2,6 +2,7 @@ package com.example;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Size;
 
 import com.facebook.react.ReactActivity;
 import com.reactlibrary.MotionSplash;
@@ -22,6 +23,10 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, 0,getResources().getString(R.color.backgroundColor));
+    Size iconInitialSize = new Size(70, 70);
+    String backgroundColor = getResources().getString(R.color.backgroundColor);
+    MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, iconInitialSize, backgroundColor);
+
+    //    MotionSplash.init(MainActivity.this, R.drawable.background_splash, R.id.logo_splash, iconInitialSize, R.id.logo_background);
   }
 }

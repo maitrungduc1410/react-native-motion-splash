@@ -2,7 +2,7 @@
   "name": "react-native-motion-splash",
   "title": "React Native Motion Splash",
   "description": "Motional splash screen animations for React Native",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {

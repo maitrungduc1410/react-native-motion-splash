@@ -48,7 +48,7 @@ static void InitializeFlipper(UIApplication *application) {
   UIImage *img = [UIImage imageNamed:@"Logo"];
 //  UIImage *bg = [UIImage imageNamed:@"Background"];
   CGSize iconInitialSize = CGSizeMake(70, 70);
-  UIColor *backgroundColor = [UIColor colorWithRed:0.00 green:0.48 blue:1.00 alpha:1.0];
+  NSString *backgroundColor = @"#0573ff";
   [MotionSplash initWithIconImage:img iconInitialSize:&iconInitialSize backgroundColor:backgroundColor  inRootView:rootView];
   
   return YES;

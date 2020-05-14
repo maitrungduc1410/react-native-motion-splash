@@ -19,9 +19,18 @@ RCT_EXPORT_MODULE()
     [MotionSplash hide];
 }
 
-+ (void) initWithIconImage:(UIImage *)iconImage iconInitialSize:(CGSize *)iconInitialSize backgroundColor:(UIColor *)backgroundColor inRootView:(UIView*)rootView {
++ (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
++ (void) initWithIconImage:(UIImage *)iconImage iconInitialSize:(CGSize *)iconInitialSize backgroundColor:(NSString *)backgroundColor inRootView:(UIView*)rootView {
     
-    instance = [[MotionSplashModule alloc] initWithIconImage:iconImage iconInitialSize:*iconInitialSize backgroundColor:backgroundColor];
+    UIColor *bgColorFromHex = [MotionSplash colorFromHexString:backgroundColor];
+    instance = [[MotionSplashModule alloc] initWithIconImage:iconImage iconInitialSize:*iconInitialSize backgroundColor:bgColorFromHex];
     UIView *revealingSplashView = (UIView *)instance.revealingSplashView;
     [rootView addSubview:revealingSplashView];
     
