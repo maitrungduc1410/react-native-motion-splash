@@ -40,8 +40,9 @@
     1. [Basic usage](#basic)
     2. [Animation types](#Animation-types)
     3. [Advanced](#Advanced)
-3. [Demo](#demo)
-4. [Thanks](#thanks)
+3. [Compare with other libraries](#Compare-with-other-libraries)
+4. [Demo](#demo)
+5. [Thanks](#thanks)
 
 # Installation
 With npm:
@@ -369,8 +370,14 @@ MotionSplash.useCustomColor(true, 'red');
 // false applied for the background image (if set)
 ```
 
+# Compare with other libraries
+- `react-native-boot-splash` requires you to use `Storyboard` for iOS, and their tool is also do some configurations for you in order to make it work (Eg: changing `Info.plist`). So in the future if you don't want to use that library and want to go back to the original structure, it's maybe hard
+- on iOS both `react-native-boot-splash` and `react-native-splash-screen` idea is animate the whole splash screen, this make it's impossible in cases you have more than 1 objects on the splash screen and you just want animate the center one (for example)
+
+By creating splash screen manually using native code under the hood, `react-native-motion-splash` have full control of how the splash screen should be shown, how it should be animated. That's why `RNMotionSplash` can perform more animations.
+
 # Demo
 A fully working demo is located at [example folder](./example/)
 
 # Thanks
-Big thanks to [Pixel16](https://github.com/PiXeL16/RevealingSplashView) of his great work that inspires me to create this library
+Big thanks to [Pixel16](https://github.com/PiXeL16/RevealingSplashView) of his great work that inspires me to create this library.
